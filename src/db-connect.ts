@@ -12,10 +12,7 @@ async function dbConnect(): Promise<{ dbStatus: () => iStatus }> {
     await mongoose.connect(mongoUri, {
       user: process.env.DB_USER,
       pass: process.env.DB_PASS,
-      dbName: process.env.DB_NAME,
-      useFindAndModify: false,
-      useNewUrlParser: true,
-      useUnifiedTopology: true
+      dbName: process.env.DB_NAME
     })
 
     connection = 'up'

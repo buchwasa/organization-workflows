@@ -44,12 +44,12 @@ export const RunSchema = new mongoose.Schema({
 RunSchema.index(
   { 
     createdAt: 1,
+  }, {
+    expireAfterSeconds: runExpiry,
     unique: true,
-    sparse: true,
-  }, { 
-    expireAfterSeconds: runExpiry 
+    sparse: true
   })
-  
+
 const Run = mongoose.model<IRun>('Run', RunSchema)
 
 // Update existing document with config.workflows_repository field
