@@ -1,12 +1,12 @@
-FROM node:12-slim
+FROM node:lts-slim
 WORKDIR /usr/src/app
-COPY package.json package-lock.json tsconfig.json ./
+COPY package.json yarn.lock tsconfig.json ./
 COPY src src
-RUN npm ci
-RUN npm run build
-RUN npm cache clean --force
+RUN yarn install --immutable
+RUN yarn run build
+RUN yarn cache clean --force
 ENV NODE_ENV="production"
 ENV PORT=8080
 EXPOSE 8080
 COPY lib lib
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
