@@ -16,7 +16,7 @@ jobs:
   e2e-staging:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: actions/github-script@v3
       with:
         github-token: ${{ secrets.CI_TEST_TOKEN }}
@@ -44,7 +44,7 @@ jobs:
     needs: [promote-environment]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: actions/github-script@v3
       with:
         github-token: ${{ secrets.CI_TEST_TOKEN }}
