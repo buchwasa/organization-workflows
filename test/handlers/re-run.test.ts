@@ -1,18 +1,18 @@
-import mockingoose from 'mockingoose';
-import { Context } from 'probot'
-import handleReRun from '../../src/handlers/re-run'
-import runsModel from '../../src/models/runs.model';
+import mockingoose from "mockingoose";
+import { Context } from "probot"
+import handleReRun from "../../src/handlers/re-run"
+import runsModel from "../../src/models/runs.model";
 
-describe('rerun handler', () => {
+describe("rerun handler", () => {
   let event: any
   let context: Context
 
   beforeEach(async () => {
     event = {
-      id: '123',
-      name: 'check_run',
+      id: "123",
+      name: "check_run",
       payload: {
-        action: 'rerequested',
+        action: "rerequested",
         check_run: {}
       }
     }
@@ -23,56 +23,56 @@ describe('rerun handler', () => {
     } as any
   })
 
-  describe('run id is empty', () => {
+  describe("run id is empty", () => {
     beforeEach(async () => {
       context.payload.check_run.id = null
       await handleReRun(context)
     })
 
-    test('should not call reRunWorkflow method', () => {
+    test("should not call reRunWorkflow method", () => {
       expect(context.octokit.actions.reRunWorkflow).not.toBeCalled();
     })
   });
 
-  describe('no run is found in database', () => {
+  describe("no run is found in database", () => {
     beforeEach(async () => {
-      context.payload.check_run.id = '123'
-      mockingoose(runsModel).toReturn(null, 'findOne');
+      context.payload.check_run.id = "123"
+      mockingoose(runsModel).toReturn(null, "findOne");
       await handleReRun(context)
     })
 
-    test('should not call reRunWorkflow method', () => {
+    test("should not call reRunWorkflow method", () => {
       expect(context.octokit.actions.reRunWorkflow).not.toBeCalled();
     })
   });
 
-  describe('run is found in database', () => {
+  describe("run is found in database", () => {
     const _doc = {
-      _id: '123',
-      sha: 'sha123sha',
-      callback_url: 'https://thisapp.com',
+      _id: "123",
+      sha: "sha123sha",
+      callback_url: "https://thisapp.com",
       check: {
         run_id: 1,
-        name: 'workflow check test',
+        name: "workflow check test",
         checks_run_id: 1001
       },
       repository: {
-        owner: 'santa',
-        name: 'rudolph',
-        full_name: 'santa/rudolph'
+        owner: "santa",
+        name: "rudolph",
+        full_name: "santa/rudolph"
       }
     };
  
     beforeEach(async () => {
-      context.payload.check_run.id = '123'
-      mockingoose(runsModel).toReturn(_doc, 'findOne');
+      context.payload.check_run.id = "123"
+      mockingoose(runsModel).toReturn(_doc, "findOne");
       await handleReRun(context)
     })
 
-    test('should call reRunWorkflow method with correctArguments', () => {
+    test("should call reRunWorkflow method with correctArguments", () => {
       expect(context.octokit.actions.reRunWorkflow).not.toBeCalledWith({
         owner: _doc.repository.owner,
-        repo: './github',
+        repo: "./github",
         run_id: _doc.check.run_id
       });
     })

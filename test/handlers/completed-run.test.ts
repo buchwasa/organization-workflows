@@ -1,24 +1,24 @@
-import mockingoose from 'mockingoose';
-import { Context } from 'probot'
-import handleCompletedRun from '../../src/handlers/completed-run'
-import runsModel from '../../src/models/runs.model';
+import mockingoose from "mockingoose";
+import { Context } from "probot"
+import handleCompletedRun from "../../src/handlers/completed-run"
+import runsModel from "../../src/models/runs.model";
 
-describe('completed run handler', () => {
+describe("completed run handler", () => {
   let event: any
   let context: Context
   let _doc: any;
 
   beforeEach(async () => {
     event = {
-      id: '123',
-      name: 'workflow_run',
+      id: "123",
+      name: "workflow_run",
       payload: {
         action: "completed",
         repository: {
-          name: '.github',
-          full_name: 'santa/.github',
+          name: ".github",
+          full_name: "santa/.github",
           owner: {
-            login: 'santa'
+            login: "santa"
           }
         },
         workflow_run: {
@@ -40,8 +40,8 @@ describe('completed run handler', () => {
 
     _doc = {
       repository: {
-        owner: 'santa',
-        name: 'harold'
+        owner: "santa",
+        name: "harold"
       },
       checks: [{
         name: "org-workflow/santa-linter",
@@ -49,28 +49,28 @@ describe('completed run handler', () => {
         checks_run_id: 29104,
       }],
       config: {
-        workflows_repository: '.github'
+        workflows_repository: ".github"
       }
     }
 
-    mockingoose(runsModel).toReturn(_doc, 'findOne');
+    mockingoose(runsModel).toReturn(_doc, "findOne");
   })
 
-  describe('repository is not .github', () => {
+  describe("repository is not .github", () => {
     beforeEach(async () => {
-      context.payload.repository.name = 'foo'
+      context.payload.repository.name = "foo"
       await handleCompletedRun(context)
     })
-    test('should not call octokit checks update method', () => {
+    test("should not call octokit checks update method", () => {
       expect(context.octokit.checks.update).not.toBeCalled();
     });
   })
 
-  describe('run is found', () => {
+  describe("run is found", () => {
     beforeEach(async () => {
       await handleCompletedRun(context)
     })
-    test('should call octokit checks update method', () => {
+    test("should call octokit checks update method", () => {
       expect(context.octokit.checks.update).toBeCalledWith({
         check_run_id: _doc.checks[0].checks_run_id,
         conclusion: context.payload.workflow_run.conclusion,
@@ -82,12 +82,12 @@ describe('completed run handler', () => {
     });
   })
 
-  describe('run is not found', () => {
+  describe("run is not found", () => {
     beforeEach(async () => {
-      mockingoose(runsModel).toReturn(null, 'findOne');
+      mockingoose(runsModel).toReturn(null, "findOne");
       await handleCompletedRun(context)
     })
-    test('should not call octokit checks update method', () => {
+    test("should not call octokit checks update method", () => {
       expect(context.octokit.checks.update).not.toBeCalled();
     });
   })

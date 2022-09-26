@@ -1,12 +1,12 @@
-import mongoose from 'mongoose'
-const mongoUri = process.env.DB_HOST || 'localhost'
+import mongoose from "mongoose"
+const mongoUri = process.env.DB_HOST || "localhost"
 
 interface iStatus {
   connection: string,
   dbState: string
 }
 
-let connection: string = 'down';
+let connection = "down";
 async function dbConnect(): Promise<{ dbStatus: () => iStatus }> {
   try {
     await mongoose.connect(mongoUri, {
@@ -15,10 +15,10 @@ async function dbConnect(): Promise<{ dbStatus: () => iStatus }> {
       dbName: process.env.DB_NAME
     })
 
-    connection = 'up'
+    connection = "up"
     console.log("DB connection established");
   } catch (e) {
-    connection = 'down';
+    connection = "down";
     throw e;
   }
 
@@ -30,7 +30,7 @@ function dbStatus(): iStatus  {
     connection, 
     dbState: mongoose.STATES[mongoose.connection.readyState] 
   }
-};
+}
 
 export { dbStatus }
 export default dbConnect;

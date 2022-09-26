@@ -60,6 +60,9 @@
         "modules": true
       }
     },
+    "rules": {
+      "quotes": ["warn", "double"]
+    },
     "parser": "@typescript-eslint/parser",
     "plugins": [
       "@typescript-eslint"

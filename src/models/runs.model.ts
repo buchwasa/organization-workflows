@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose'
+import * as mongoose from "mongoose"
 
 const runExpiry = 60 * 60 * 24 * 90 // 90 days
 
@@ -50,17 +50,17 @@ RunSchema.index(
     sparse: true
   })
 
-const Run = mongoose.model<IRun>('Run', RunSchema)
+const Run = mongoose.model<IRun>("Run", RunSchema)
 
 // Update existing document with config.workflows_repository field
 Run.update(
-  { 'config.workflows_repository': { $exists:false } },
-  { $set: {'config': { workflows_repository: '.github'}} },
+  { "config.workflows_repository": { $exists:false } },
+  { $set: {"config": { workflows_repository: ".github"}} },
   { new: true, multi: true }, 
   function(err, numberAffected) {  
     if (err) return console.error(err);
     if (numberAffected?.ok) {
-      console.log('updated', numberAffected.nModified, 'rows')
+      console.log("updated", numberAffected.nModified, "rows")
     }
   }
 ) 

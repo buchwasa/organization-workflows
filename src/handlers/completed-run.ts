@@ -1,11 +1,11 @@
-import { Context } from 'probot' // eslint-disable-line @typescript-eslint/no-unused-vars
-import { WorkflowRunCompletedEvent } from '@octokit/webhooks-types'
-import Runs from '../models/runs.model'
+import { Context } from "probot" // eslint-disable-line @typescript-eslint/no-unused-vars
+import { WorkflowRunCompletedEvent } from "@octokit/webhooks-types"
+import Runs from "../models/runs.model"
  
 async function handleCompletedRun(context: Context): Promise<void> {
-  let payload: WorkflowRunCompletedEvent = context.payload as WorkflowRunCompletedEvent;
+  const payload: WorkflowRunCompletedEvent = context.payload as WorkflowRunCompletedEvent;
   if (!payload.workflow_run.id) return;
-  const run = await Runs.findOne({ 'checks.run_id': { $in: payload.workflow_run.id }})
+  const run = await Runs.findOne({ "checks.run_id": { $in: payload.workflow_run.id }})
 
   if (!run) return
   if (payload.repository.name !== run.config.workflows_repository) return

@@ -1,7 +1,7 @@
-import { Context } from 'probot' // eslint-disable-line @typescript-eslint/no-unused-vars
+import { Context } from "probot" // eslint-disable-line @typescript-eslint/no-unused-vars
 
 async function enforceProtection (
-  octokit: Context['octokit'],
+  octokit: Context["octokit"],
   repository: { owner: string, repo: string },
   context_name: string,
   enforce: boolean,
@@ -10,7 +10,7 @@ async function enforceProtection (
   const repo = await octokit.repos.get({
     ...repository,
     mediaType: {
-      previews: ['symmetra']
+      previews: ["symmetra"]
     }
   })
   

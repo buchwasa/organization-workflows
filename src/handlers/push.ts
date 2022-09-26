@@ -1,15 +1,15 @@
-import { Context } from 'probot' // eslint-disable-line @typescript-eslint/no-unused-vars
+import { Context } from "probot" // eslint-disable-line @typescript-eslint/no-unused-vars
 import pick from "lodash.pick"
-import Run from '../models/runs.model'
+import Run from "../models/runs.model"
 import { default_organization_repository, app_route, config_keys } from "../constants";
-import { PushEvent } from '@octokit/webhooks-types'
+import { PushEvent } from "@octokit/webhooks-types"
 import shouldRun from "../utils/should-run";
 
-export const repository_dispatch_type = 'org-workflow-bot'
-export const config_path = 'organization-workflows-settings.yml'
+export const repository_dispatch_type = "org-workflow-bot"
+export const config_path = "organization-workflows-settings.yml"
 
 async function handlePush(context: Context): Promise<void> {
-  let payload: PushEvent = context.payload as PushEvent;
+  const payload: PushEvent = context.payload as PushEvent;
   const { config } = await context.octokit.config.get({
     owner: payload.repository.owner.login,
     repo: default_organization_repository,
