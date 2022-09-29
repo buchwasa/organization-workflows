@@ -29,7 +29,7 @@
     "probot": "12.2.8"
   },
   "devDependencies": {
-    "@types/jest": "29.0.3",
+    "@types/jest": "29.1.0",
     "@types/lodash.pick": "4.4.7",
     "@types/nock": "11.1.0",
     "@types/node": "18.7.21",
