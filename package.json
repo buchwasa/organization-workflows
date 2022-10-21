@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "lodash.pick": "4.4.0",
-    "mongoose": "6.6.6",
+    "mongoose": "6.6.7",
     "node-fetch": "3.2.10",
     "probot": "12.2.8"
   },
