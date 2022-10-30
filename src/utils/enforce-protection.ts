@@ -1,4 +1,4 @@
-import { Context } from "probot" // eslint-disable-line @typescript-eslint/no-unused-vars
+import { Context } from "probot"
 
 async function enforceProtection (
   octokit: Context["octokit"],

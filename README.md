@@ -158,7 +158,7 @@ APP_ROUTE                        | `/org-workflows`      | Application route    
 
 ## Development
 ### Codespaces
-A [Codespaces environment](https://github.com/features/codespaces) is defined so you can get started right away. Open this repository in the codespace and run `npm run dev` to start the app in development mode. It will prompt you to follow a couple of instruction to configure your GitHub app and set your .env values.
+A [Codespaces environment](https://github.com/features/codespaces) is defined so you can get started right away. Open this repository in the codespace and run `yarn run dev` to start the app in development mode. It will prompt you to follow a couple of instruction to configure your GitHub app and set your .env values.
 
 <img width="679" alt="Screenshot 2020-12-22 at 13 29 01" src="https://user-images.githubusercontent.com/24505883/102888754-ae2e9a80-4459-11eb-92cf-5789f945e4d8.png">
 
@@ -172,27 +172,24 @@ This app depends on NodeJS to run the application and MongoDB for data persisten
 
 ```sh
 # Install dependencies
-npm install
+yarn install
 ```
 
 Then, copy `.env.example` to `.env` and populate it with your MongoDB host and credentials and your proxy url. Make sure to run a tool like [ngrok](https://ngrok.com/) or [localtunnel](https://github.com/localtunnel/localtunnel) to expose your application to the internet. Smee.io is not supported, as it is a webhook proxy service and cannot forward Express endpoint calls
 
 Now you can run the app with the following command:
 ```sh
-npm run build:watch
+yarn run build:watch
 ```
 
 This will prompt you to visit http://localhost:3000 and configure the app on the GitHub side. After you do this it will automatically populate the `APP_ID`, `WEBHOOK_SECRET` and `PRIVATE_KEY` field in the `.env` file.
 
 ### Build, test, and run
 ```
-npm run build
-npm test
-npm run start
+yarn run build
+yarn test
+yarn run start
 ```
-
-### Infrastructure
-You can find a Terraform definition in the `./infra` directory for deployments to Azure.
 
 ## Contributing
 

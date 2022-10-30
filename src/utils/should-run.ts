@@ -6,8 +6,7 @@ function shouldRun(
     return new RegExp("^" + repository.replace(/\*/g, ".*") + "$").test(repositoryName)
   });    
 
-  if (excludeMatch) return false;
-  return true;
+  return !excludeMatch;
 }
 
 export default shouldRun;

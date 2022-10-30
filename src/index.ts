@@ -1,4 +1,4 @@
-import { Probot } from "probot" // eslint-disable-line @typescript-eslint/no-unused-vars
+import { Probot } from "probot"
 import { Request, Response } from "express";
 import dbConnect from "./db-connect";
 

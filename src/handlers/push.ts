@@ -1,4 +1,4 @@
-import { Context } from "probot" // eslint-disable-line @typescript-eslint/no-unused-vars
+import { Context } from "probot"
 import pick from "lodash.pick"
 import Run from "../models/runs.model"
 import { default_organization_repository, app_route, config_keys } from "../constants";

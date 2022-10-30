@@ -53,7 +53,7 @@ RunSchema.index(
 const Run = mongoose.model<IRun>("Run", RunSchema)
 
 // Update existing document with config.workflows_repository field
-Run.update(
+Run.updateMany(
   { "config.workflows_repository": { $exists:false } },
   { $set: {"config": { workflows_repository: ".github"}} },
   { new: true, multi: true }, 

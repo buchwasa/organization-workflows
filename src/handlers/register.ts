@@ -1,8 +1,8 @@
-import { Probot } from "probot" // eslint-disable-line @typescript-eslint/no-unused-vars
+import { Probot } from "probot"
 import { Request, Response } from "express";
 
 import Runs, { ICheck } from "../models/runs.model"
-import enforceProtection from "../utils/enforce-protection"
+//import enforceProtection from "../utils/enforce-protection"
 import { github_host } from "../constants";
 
 async function handleRegister(
@@ -46,13 +46,14 @@ async function handleRegister(
 
   const checks_run = await octokit.checks.create(data)
 
-  enforceProtection(
+  //FIXME
+  /*enforceProtection(
     octokit,
     { owner: run.repository.owner, repo: run.repository.name },
     data.name,
     enforce === "true",
     run.repository.name !== run.config.workflows_repository && enforce_admin === "true" // Exclude the repository that contains the workflow. 
-  )
+  )*/
   
   const checkInfo: ICheck = {
     name: data.name,
