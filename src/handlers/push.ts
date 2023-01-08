@@ -53,7 +53,7 @@ async function handlePush(context: Context): Promise<void> {
   const run = new Run({
     ...data,
     checks: [],
-    config: pick(config, config_keys)
+    config: { config, config_keys }
   });
 
   const { _id } = await run.save()

@@ -23,7 +23,6 @@
     "test:watch": "jest --watch --notify --notifyMode=change --coverage"
   },
   "dependencies": {
-    "lodash.pick": "4.4.0",
     "mongoose": "6.7.5",
     "node-fetch": "3.3.0",
     "probot": "12.2.8"
