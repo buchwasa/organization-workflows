@@ -1837,18 +1837,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/lodash.pick@4.4.7":
-  version "4.4.7"
-  resolved "https://registry.yarnpkg.com/@types/lodash.pick/-/lodash.pick-4.4.7.tgz#4a700075758692ce6ee48bee08e6fd4004d5da53"
-  integrity sha512-HgdyKz7/1+oeoVzbpu1XiX/Bti9AUksHtOILH38T07aKvqoirzcdOsrO2+Yg3L51Hv/8m1MetvHZEUGeABiTiQ==
-  dependencies:
-    "@types/lodash" "*"
-
-"@types/lodash@*":
-  version "4.14.185"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.185.tgz#c9843f5a40703a8f5edfd53358a58ae729816908"
-  integrity sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA==
-
 "@types/lru-cache@^5.1.0":
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/@types/lru-cache/-/lru-cache-5.1.1.tgz#c48c2e27b65d2a153b19bfc1a317e30872e01eef"

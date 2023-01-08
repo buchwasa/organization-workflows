@@ -1,5 +1,4 @@
 import { Context } from "probot"
-import pick from "lodash.pick"
 import Run from "../models/runs.model"
 import { default_organization_repository, app_route, config_keys } from "../constants";
 import { PushEvent } from "@octokit/webhooks-types"
