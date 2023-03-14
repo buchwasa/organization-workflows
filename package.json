@@ -23,7 +23,7 @@
     "test:watch": "jest --watch --notify --notifyMode=change --coverage"
   },
   "dependencies": {
-    "mongoose": "6.10.2",
+    "mongoose": "6.10.3",
     "node-fetch": "3.3.1",
     "probot": "12.3.0"
   },
